@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Jens!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+            animation: backgroundShift 10s ease-in-out infinite;
+        }
+        
+        @keyframes backgroundShift {
+            0%, 100% { background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); }
+            50% { background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%); }
+        }
+        
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .birthday-message {
+            text-align: center;
+            color: white;
+            z-index: 100;
+            position: relative;
+            animation: zoomIn 1.5s ease-out;
+        }
+        
+        .main-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 5rem;
+            font-weight: 400;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.3);
+            margin-bottom: 2rem;
+            animation: bounce 2s infinite, colorCycle 4s infinite;
+        }
+        
+        @keyframes colorCycle {
+            0%, 100% { color: #ffffff; }
+            25% { color: #ffd700; }
+            50% { color: #ff6b6b; }
+            75% { color: #4ecdc4; }
+        }
+        
+        .cake-container {
+            position: relative;
+            width: 350px;
+            height: 300px;
+            margin: 2rem auto;
+            opacity: 0;
+            animation: cakeAppear 2s ease-out 1.5s forwards;
+        }
+        
+        .cake {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+        }
+        
+        /* Bottom Layer - Largest */
+        .cake-bottom {
+            width: 300px;
+            height: 80px;
+            background: linear-gradient(to bottom, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            border-radius: 15px 15px 5px 5px;
+            position: relative;
+            box-shadow: inset 0 2px 10px rgba(255,255,255,0.3);
+        }
+        
+        .cake-bottom::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 0;
+            right: 0;
+            height: 16px;
+            background: linear-gradient(to right, #ffecd2 0%, #fcb69f 50%, #ffecd2 100%);
+            border-radius: 15px 15px 0 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* Middle Layer - Medium */
+        .cake-middle {
+            width: 220px;
+            height: 70px;
+            background: linear-gradient(to bottom, #a8edea 0%, #fed6e3 50%, #fed6e3 100%);
+            border-radius: 12px 12px 5px 5px;
+            position: absolute;
+            bottom: 75px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: inset 0 2px 8px rgba(255,255,255,0.3);
+        }
+        
+        .cake-middle::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 0;
+            right: 0;
+            height: 14px;
+            background: linear-gradient(to right, #ffecd2 0%, #fcb69f 50%, #ffecd2 100%);
+            border-radius: 12px 12px 0 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        /* Top Layer - Smallest with Candles */
+        .cake-top {
+            width: 150px;
+            height: 60px;
+            background: linear-gradient(to bottom, #ffecd2 0%, #fcb69f 50%, #fcb69f 100%);
+            border-radius: 10px 10px 5px 5px;
+            position: absolute;
+            bottom: 140px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: inset 0 2px 6px rgba(255,255,255,0.3);
+        }
+        
+        .cake-top::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 0;
+            right: 0;
+            height: 12px;
+            background: linear-gradient(to right, #ffecd2 0%, #fcb69f 50%, #ffecd2 100%);
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+        }
+        
+        /* Decorative frosting swirls */
+        .frosting-swirl {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #ffffff 0%, #ffecd2 100%);
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .swirl1 { top: -10px; left: 20px; }
+        .swirl2 { top: -12px; left: 40px; }
+        .swirl3 { top: -8px; left: 60px; }
+        .swirl4 { top: -11px; left: 80px; }
+        .swirl5 { top: -9px; left: 100px; }
+        .swirl6 { top: -10px; left: 120px; }
+        
+        /* Candles on Top Layer */
+        .candles {
+            position: absolute;
+            top: -70px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+        }
+        
+        .candle {
+            width: 10px;
+            height: 60px;
+            background: linear-gradient(to top, #ff6b6b 0%, #ff4757 50%, #ff6b6b 100%);
+            border-radius: 5px 5px 2px 2px;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .candle::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 8px;
+            background: #333;
+            border-radius: 1px;
+        }
+        
+        .flame {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 30px;
+            background: radial-gradient(ellipse at center, #ffd700 0%, #ff8c00 40%, #ff4757 80%, #2c2c54 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flicker 0.2s ease-in-out infinite alternate, flameColor 1.5s infinite;
+            box-shadow: 0 0 20px #ffd700, 0 0 40px #ff8c00;
+        }
+        
+        .flame::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 15px;
+            background: radial-gradient(ellipse at center, #fff 0%, #ffd700 50%, transparent 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        }
+        
+        @keyframes flameColor {
+            0%, 100% { filter: hue-rotate(0deg); }
+            25% { filter: hue-rotate(15deg); }
+            50% { filter: hue-rotate(-10deg); }
+            75% { filter: hue-rotate(5deg); }
+        }
+        
+        /* Dancing Animals */
+        .animal {
+            position: absolute;
+            font-size: 4rem;
+            animation: dance 2s ease-in-out infinite;
+            z-index: 50;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+        
+        .animal:hover {
+            transform: scale(1.2);
+        }
+        
+        .cat1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .cat2 { top: 60%; right: 15%; animation-delay: 0.5s; }
+        .dog1 { top: 30%; right: 20%; animation-delay: 1s; }
+        .dog2 { top: 70%; left: 20%; animation-delay: 1.5s; }
+        .cat3 { top: 15%; right: 30%; animation-delay: 0.3s; }
+        .dog3 { bottom: 20%; left: 15%; animation-delay: 0.8s; }
+        
+        /* Confetti */
+        .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            animation: confettiFall 4s linear infinite;
+            z-index: 10;
+        }
+        
+        .confetti:nth-child(2n) { 
+            background: #ff6b6b;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        .confetti:nth-child(3n) { 
+            background: #4ecdc4;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+        .confetti:nth-child(4n) { 
+            background: #45b7d1;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+        }
+        
+        /* Balloons */
+        .balloon {
+            position: absolute;
+            width: 80px;
+            height: 100px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: balloonFloat 6s ease-in-out infinite;
+            z-index: 20;
+        }
+        
+        .balloon:nth-child(1) { 
+            background: radial-gradient(circle at 30% 30%, #ff6b6b, #ee5a52);
+            left: 5%;
+            animation-delay: 0s;
+        }
+        .balloon:nth-child(2) { 
+            background: radial-gradient(circle at 30% 30%, #4ecdc4, #44a08d);
+            right: 10%;
+            animation-delay: 2s;
+        }
+        .balloon:nth-child(3) { 
+            background: radial-gradient(circle at 30% 30%, #45b7d1, #2980b9);
+            left: 15%;
+            animation-delay: 4s;
+        }
+        
+        /* Sparkles */
+        .sparkle {
+            position: absolute;
+            color: #ffd700;
+            font-size: 2rem;
+            animation: sparkle 3s ease-in-out infinite;
+            z-index: 30;
+        }
+        
+        /* Music Notes */
+        .music-note {
+            position: absolute;
+            color: #ffd700;
+            font-size: 2rem;
+            animation: musicFloat 4s ease-in-out infinite;
+            z-index: 40;
+        }
+        
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+        
+        @keyframes cakeAppear {
+            from {
+                opacity: 0;
+                transform: scale(0) rotate(-360deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+        
+        @keyframes dance {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(-5deg);
+            }
+            75% {
+                transform: translateY(-30px) rotate(3deg);
+            }
+        }
+        
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes balloonFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-40px) rotate(8deg);
+            }
+        }
+        
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1) rotate(-3deg); }
+            100% { transform: translateX(-50%) scale(1.1) rotate(3deg); }
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { 
+                opacity: 0; 
+                transform: scale(0) rotate(0deg);
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1) rotate(180deg);
+            }
+        }
+        
+        @keyframes musicFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0;
+            }
+            25% {
+                transform: translateY(-30px) rotate(10deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-60px) rotate(-10deg);
+                opacity: 1;
+            }
+            75% {
+                transform: translateY(-90px) rotate(5deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-title { font-size: 3rem; }
+            .cake-container { width: 280px; height: 240px; }
+            .cake-bottom { width: 240px; height: 70px; }
+            .cake-middle { width: 180px; height: 60px; bottom: 65px; }
+            .cake-top { width: 120px; height: 50px; bottom: 120px; }
+            .animal { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Confetti -->
+    <div class="confetti" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="confetti" style="left: 20%; animation-delay: 0.5s;"></div>
+    <div class="confetti" style="left: 30%; animation-delay: 1s;"></div>
+    <div class="confetti" style="left: 40%; animation-delay: 1.5s;"></div>
+    <div class="confetti" style="left: 50%; animation-delay: 2s;"></div>
+    <div class="confetti" style="left: 60%; animation-delay: 2.5s;"></div>
+    <div class="confetti" style="left: 70%; animation-delay: 0.3s;"></div>
+    <div class="confetti" style="left: 80%; animation-delay: 0.8s;"></div>
+    <div class="confetti" style="left: 90%; animation-delay: 1.3s;"></div>
+    
+    <!-- Balloons -->
+    <div class="balloon" style="top: 10%;"></div>
+    <div class="balloon" style="top: 20%;"></div>
+    <div class="balloon" style="top: 15%;"></div>
+    
+    <!-- Sparkles -->
+    <div class="sparkle" style="left: 15%; top: 25%; animation-delay: 0s;">✨</div>
+    <div class="sparkle" style="right: 20%; top: 30%; animation-delay: 1s;">⭐</div>
+    <div class="sparkle" style="left: 25%; bottom: 35%; animation-delay: 2s;">✨</div>
+    <div class="sparkle" style="right: 30%; bottom: 30%; animation-delay: 0.5s;">⭐</div>
+    <div class="sparkle" style="left: 40%; top: 20%; animation-delay: 1.5s;">✨</div>
+    
+    <!-- Music Notes -->
+    <div class="music-note" style="left: 20%; top: 40%; animation-delay: 0s;">♪</div>
+    <div class="music-note" style="right: 25%; top: 35%; animation-delay: 1s;">♫</div>
+    <div class="music-note" style="left: 30%; top: 60%; animation-delay: 2s;">♪</div>
+    <div class="music-note" style="right: 35%; top: 55%; animation-delay: 0.5s;">♫</div>
+    <div class="music-note" style="left: 45%; top: 45%; animation-delay: 1.5s;">♪</div>
+    
+    <!-- Dancing Animals -->
+    <div class="animal cat1" onclick="makeSound('meow')">🐱</div>
+    <div class="animal cat2" onclick="makeSound('meow')">🐈</div>
+    <div class="animal cat3" onclick="makeSound('meow')">🐱</div>
+    <div class="animal dog1" onclick="makeSound('woof')">🐶</div>
+    <div class="animal dog2" onclick="makeSound('woof')">🐕</div>
+    <div class="animal dog3" onclick="makeSound('woof')">🐶</div>
+    
+    <div class="container">
+        <div class="birthday-message">
+            <h1 class="main-title">🎉 Happy Birthday Jens! 🎉</h1>
+            
+            <div class="cake-container">
+                <div class="cake">
+                    <!-- Bottom Layer -->
+                    <div class="cake-bottom">
+                        <div class="frosting-swirl swirl1"></div>
+                        <div class="frosting-swirl swirl2"></div>
+                        <div class="frosting-swirl swirl3"></div>
+                        <div class="frosting-swirl swirl4"></div>
+                        <div class="frosting-swirl swirl5"></div>
+                        <div class="frosting-swirl swirl6"></div>
+                    </div>
+                    
+                    <!-- Middle Layer -->
+                    <div class="cake-middle">
+                        <div class="frosting-swirl" style="left: 15px; top: -8px;"></div>
+                        <div class="frosting-swirl" style="left: 35px; top: -10px;"></div>
+                        <div class="frosting-swirl" style="left: 55px; top: -7px;"></div>
+                        <div class="frosting-swirl" style="left: 75px; top: -9px;"></div>
+                        <div class="frosting-swirl" style="left: 95px; top: -8px;"></div>
+                    </div>
+                    
+                    <!-- Top Layer with Candles -->
+                    <div class="cake-top">
+                        <div class="frosting-swirl" style="left: 10px; top: -6px;"></div>
+                        <div class="frosting-swirl" style="left: 25px; top: -8px;"></div>
+                        <div class="frosting-swirl" style="left: 40px; top: -5px;"></div>
+                        <div class="frosting-swirl" style="left: 55px; top: -7px;"></div>
+                        <div class="frosting-swirl" style="left: 70px; top: -6px;"></div>
+                        <div class="frosting-swirl" style="left: 85px; top: -8px;"></div>
+                        <div class="frosting-swirl" style="left: 100px; top: -6px;"></div>
+                        <div class="frosting-swirl" style="left: 115px; top: -7px;"></div>
+                        <div class="frosting-swirl" style="left: 130px; top: -6px;"></div>
+                        
+                        <!-- Candles on Top Layer -->
+                        <div class="candles">
+                            <div class="candle"><div class="flame"></div></div>
+                            <div class="candle"><div class="flame"></div></div>
+                            <div class="candle"><div class="flame"></div></div>
+                            <div class="candle"><div class="flame"></div></div>
+                            <div class="candle"><div class="flame"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Extended pixel-style birthday music using Web Audio API
+        function playPixelBirthdayMusic() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            
+            // Extended 8-bit style notes for "Happy Birthday" (repeated for longer duration)
+            const notes = [
+                // First verse
+                { frequency: 261.63, duration: 0.3 }, // C4
+                { frequency: 261.63, duration: 0.3 }, // C4
+                { frequency: 293.66, duration: 0.6 }, // D4
+                { frequency: 261.63, duration: 0.6 }, // C4
+                { frequency: 349.23, duration: 0.6 }, // F4
+                { frequency: 329.63, duration: 1.2 }, // E4
+                
+                // Second verse
+                { frequency: 261.63, duration: 0.3 }, // C4
+                { frequency: 261.63, duration: 0.3 }, // C4
+                { frequency: 293.66, duration: 0.6 }, // D4
+                { frequency: 261.63, duration: 0.6 }, // C4
+                { frequency: 392.00, duration: 0.6 }, // G4
+                { frequency: 349.23, duration: 1.2 }, // F4
+                
+                // Extended ending
+                { frequency: 261.63, duration: 0.3 }, // C4
+                { frequency: 261.63, duration: 0.3 }, // C4
+                { frequency: 523.25, duration: 0.6 }, // C5
+                { frequency: 440.00, duration: 0.6 }, // A4
+                { frequency: 349.23, duration: 0.6 }, // F4
+                { frequency: 329.63, duration: 0.6 }, // E4
+                { frequency: 293.66, duration: 1.8 }, // D4 (extended final note)
+            ];
+            
+            let currentTime = audioContext.currentTime;
+            
+            notes.forEach((note, index) => {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                // 8-bit square wave sound
+                oscillator.type = 'square';
+                oscillator.frequency.setValueAtTime(note.frequency, currentTime);
+                
+                // Simple ADSR envelope for 8-bit feel
+                gainNode.gain.setValueAtTime(0, currentTime);
+                gainNode.gain.linearRampToValueAtTime(0.1, currentTime + 0.01);
+                gainNode.gain.linearRampToValueAtTime(0.05, currentTime + note.duration * 0.7);
+                gainNode.gain.linearRampToValueAtTime(0, currentTime + note.duration);
+                
+                oscillator.start(currentTime);
+                oscillator.stop(currentTime + note.duration);
+                
+                currentTime += note.duration;
+            });
+        }
+        
+        // Animal sound effects
+        function makeSound(type) {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            if (type === 'meow') {
+                // Cat meow - ascending then descending frequency
+                oscillator.type = 'sawtooth';
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(1200, audioContext.currentTime + 0.1);
+                oscillator.frequency.exponentialRampToValueAtTime(600, audioContext.currentTime + 0.3);
+                gainNode.gain.setValueAtTime(0.15, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+            } else if (type === 'woof') {
+                // Dog woof - low frequency with quick decay
+                oscillator.type = 'square';
+                oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(150, audioContext.currentTime + 0.1);
+                gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+            }
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.3);
+        }
+        
+        // Add confetti on click
+        document.addEventListener('click', function(e) {
+            // Don't trigger if clicking on animals
+            if (e.target.classList.contains('animal')) return;
+            
+            for(let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = (e.clientX + (Math.random() - 0.5) * 100) + 'px';
+                    confetti.style.top = (e.clientY + (Math.random() - 0.5) * 100) + 'px';
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    confetti.style.background = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3'][Math.floor(Math.random() * 6)];
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 4000);
+                }, i * 50);
+            }
+        });
+        
+        // Add more sparkles periodically
+        setInterval(() => {
+            const sparkle = document.createElement('div');
+            sparkle.innerHTML = ['✨', '⭐', '🎈', '🎉'][Math.floor(Math.random() * 4)];
+            sparkle.style.position = 'absolute';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.fontSize = '2rem';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.zIndex = '1000';
+            sparkle.style.animation = 'sparkle 2s ease-out forwards';
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }, 3000);
+        
+        // Auto confetti burst on load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                playPixelBirthdayMusic();
+                for(let i = 0; i < 30; i++) {
+                    setTimeout(() => {
+                        const confetti = document.createElement('div');
+                        confetti.className = 'confetti';
+                        confetti.style.left = Math.random() * 100 + '%';
+                        confetti.style.animationDelay = Math.random() * 2 + 's';
+                        confetti.style.background = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3'][Math.floor(Math.random() * 6)];
+                        document.body.appendChild(confetti);
+                        
+                        setTimeout(() => {
+                            confetti.remove();
+                        }, 4000);
+                    }, i * 100);
+                }
+            }, 2000);
+        });
+        
+        // Add more animals on double-click
+        let animalCount = 6;
+        document.addEventListener('dblclick', function(e) {
+            if (animalCount < 15) {
+                const animal = document.createElement('div');
+                animal.className = 'animal';
+                animal.innerHTML = Math.random() > 0.5 ? '🐱' : '🐶';
+                animal.style.left = Math.random() * 80 + 10 + '%';
+                animal.style.top = Math.random() * 80 + 10 + '%';
+                animal.style.animationDelay = Math.random() * 2 + 's';
+                animal.onclick = function() { makeSound(animal.innerHTML === '🐱' ? 'meow' : 'woof'); };
+                document.body.appendChild(animal);
+                animalCount++;
+            }
+        });
+    </script>
+</body>
+</html>
